@@ -1,6 +1,4 @@
 import React, {useState} from 'react';
-import { decToBase } from './NumericalConverter';
-import { convertToDec } from './NumericalConverter';
 import NumericalConverter from './NumericalConverter';
 
 export default function InputForm() {
@@ -8,11 +6,12 @@ export default function InputForm() {
     const [inputValue, setInputValue] = useState('');
     const [inputBase, setInputBase] = useState('');
     const [outputBase, setOutputBase] = useState('');
-    var outputValue = NumericalConverter(inputValue, inputBase, outputBase);
-
+    const [outputValue, setOutputValue] = useState('');
+    
     const handleChange = (e) => {
         e.preventDefault(); 
-        
+        let resultValue = NumericalConverter(inputValue, Number(inputBase), Number(outputBase));
+        setOutputValue(resultValue);
     };
 
     return (
@@ -54,6 +53,7 @@ export default function InputForm() {
             <p>
                 Here's the output {outputValue}
             </p>
+
         </div>
     )
 }
